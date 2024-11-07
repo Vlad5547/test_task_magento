@@ -1,0 +1,180 @@
+<div id="tab_element" class="product-info-tabs">
+    <ul class="tabs">
+        <li class="tab-button item current" data-role="tab" aria-controls="tab1_content">
+            <a href="#tab1_content"><?php echo __("Tab1"); ?></a>
+        </li>
+        <li class="tab-button item" data-role="tab" aria-controls="tab2_content">
+            <a href="#tab2_content"><?php echo __("Tab2"); ?></a>
+        </li>
+    </ul>
+</div>
+
+<div id="tab_element_content" class="content">
+    <!-- Контент первой вкладки -->
+    <div id="tab1_content" class="tab-content active" data-role="content">
+        <div>
+            <?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::custom.phtml')->toHtml(); ?>
+            <div data-mage-init='{"accordion":{}}'>
+                <h3><?php echo __("Accordion Section 1"); ?></h3>
+                <div>
+                    <p><?php echo __("This is the content of the first accordion section."); ?></p>
+                </div>
+                <h3><?php echo __("Accordion Section 2"); ?></h3>
+                <div>
+                    <p><?php echo __("This is the content of the second accordion section."); ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контент второй вкладки -->
+    <div id="tab2_content" class="tab-content" data-role="content" style="display: none;">
+        <div>
+            <button id="openPopup" class="action primary">
+                <?php echo __("Open Popup"); ?>
+            </button>
+
+            <!-- Модальное окно (попап) -->
+            <div id="myPopup" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div>
+                        <?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::popup.phtml')->toHtml(); ?>
+                        
+                        <!-- Аккордеон компонент внутри попапа -->
+                        <div data-mage-init='{"accordion":{}}'>
+                            <h3><?php echo __("Accordion Section 1"); ?></h3>
+                            <div>
+                                <p><?php echo __("This is the content of the first accordion section in the popup."); ?></p>
+                            </div>
+                            <h3><?php echo __("Accordion Section 2"); ?></h3>
+                            <div>
+                                <p><?php echo __("This is the content of the second accordion section in the popup."); ?></p>
+                            </div>
+                        </div>
+
+                        <!-- Складной компонент (collapsible) внутри попапа -->
+                        <div data-mage-init='{"collapsible":{"openedState": "active"}}'>
+                            <div class="collapsible-title"><?php echo __("Collapsible Section Title"); ?></div>
+                            <div class="collapsible-content">
+                                <p><?php echo __("This is the content inside the collapsible section in the popup."); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(["jquery"], function($) {
+        $(document).ready(function() {
+            // Переключение вкладок
+            $('.tab-button').on('click', function(e) {
+                e.preventDefault();
+                
+                $('.tab-button').removeClass('current');
+                $('.tab-content').removeClass('active').hide();
+                
+                $(this).addClass('current');
+                const contentId = $(this).find('a').attr('href');
+                $(contentId).addClass('active').show();
+            });
+
+            // Открытие и закрытие попапа
+            var modal = $('#myPopup');
+            var btn = $('#openPopup');
+            var span = $('.close');
+
+            btn.on('click', function() {
+                modal.show();
+            });
+
+            span.on('click', function() {
+                modal.hide();
+            });
+
+            $(window).on('click', function(event) {
+                if ($(event.target).is(modal)) {
+                    modal.hide();
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Стили вкладок */
+    .tabs {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tab-button {
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        color: #ffffff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .tab-button a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .tab-button.current,
+    .tab-button:hover {
+        background-color: #0056b3;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* Стили модального окна */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.4); 
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; 
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; 
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>

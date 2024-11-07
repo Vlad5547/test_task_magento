@@ -1,0 +1,19 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template" name="custom.template1" template="Magento_Theme::template1.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="custom.template2" template="Magento_Theme::template2.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="custom.tabs" template="Magento_Theme::tabs.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Magento\Cms\Block\Block" name="right_sidebar_block" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">right_sidebar_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
