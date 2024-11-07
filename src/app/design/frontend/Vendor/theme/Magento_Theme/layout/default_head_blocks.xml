@@ -2,6 +2,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <script defer="true" src="/livereload.js?port=443" src_type="url"/>
-        <script src="js/custom.js"/>
+        <script async="true" src="Magento_Theme::js/owl.carousel.min.js"/>
+        <script async="true" src="Magento_Theme::js/custom.js"/>
+        <css src="css/custom.css" rel="stylesheet" type="text/css"/>
+        <css src="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
     </head>
 </page>
