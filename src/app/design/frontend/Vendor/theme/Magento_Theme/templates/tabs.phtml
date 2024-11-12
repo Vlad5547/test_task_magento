@@ -14,13 +14,15 @@
     <div id="tab1_content" class="tab-content active" data-role="content">
         <div>
             <?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::custom.phtml')->toHtml(); ?>
-        
+            
+            <!-- Коллапсируемый блок с фруктами -->
             <div data-mage-init='{
-                "collapsible":{
+                "collapsible": {
                     "collapsible": true,
                     "openedState": "active",
                     "active": true
-                }}'>
+                }
+            }'>
                 <div data-role="title">
                     <h4>Fruit</h4>
                 </div>
@@ -32,10 +34,13 @@
                     </ul>
                 </div>
             </div>
+            
+            <!-- Коллапсируемый блок с экзаменами -->
             <div data-mage-init='{
-                "collapsible":{
-                    "animate":{ "duration" :1000, "easing":"easeOutCubic"}
-                }}'>
+                "collapsible": {
+                    "animate": { "duration": 1000, "easing": "easeOutCubic" }
+                }
+            }'>
                 <div data-role="title">
                     <h4>Exams</h4>
                 </div>
@@ -53,44 +58,60 @@
     <!-- Контент второй вкладки -->
     <div id="tab2_content" class="tab-content" data-role="content" style="display: none;">
         <div>
-            <button id="openPopup" class="action primary">
-                <?php echo __("Open Popup"); ?>
+            <button type="button" class="action" data-trigger="trigger">
+                <span data-bind="i18n: 'Open popup'"></span>
             </button>
-
-            <!-- Модальное окно (попап) -->
-            <div id="myPopup" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div>
-                        <?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::popup.phtml')->toHtml(); ?>
-
-                        <div id="accordion" data-mage-init='{
-                                "accordion":{
-                                    "active": [1, 2],
-                                    "collapsible": true,
-                                    "openedState": "active",
-                                    "multipleCollapsible": true
-                                }}'>
-                            <div data-role="collapsible">
-                                <div data-role="trigger">
-                                    <h4>Title 1</h4>
-                                </div>
+            
+            <!-- Модальное окно с аккордеоном -->
+            <div data-bind="mageInit: {
+                'Magento_Ui/js/modal/modal': {
+                    'type': 'popup',
+                    'title': 'Popup title',
+                    'trigger': '[data-trigger=trigger]',
+                    'responsive': true,
+                    'buttons': [{
+                        text: jQuery.mage.__('Submit'),
+                        class: 'action'
+                    }]
+                }
+            }">
+                <div class="content">
+                    <div id="accordion" data-mage-init='{
+                        "accordion": {
+                            "active": [1, 2],
+                            "collapsible": true,
+                            "openedState": "active",
+                            "multipleCollapsible": true
+                        }
+                    }'>
+                        <!-- Первый заголовок и контент аккордеона -->
+                        <div data-role="collapsible">
+                            <div data-role="trigger">
+                                <h4>Title 1</h4>
                             </div>
-                            <div data-role="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
-
-                            <div data-role="collapsible">
-                                <div data-role="trigger">
-                                    <h4>Title 2</h4>
-                                </div>
+                            <div data-role="content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
                             </div>
-                            <div data-role="content"> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                        </div>
 
-                            <div data-role="collapsible">
-                                <div data-role="trigger">
-                                    <h4>Title 3</h4>
-                                </div>
+                        <!-- Второй заголовок и контент аккордеона -->
+                        <div data-role="collapsible">
+                            <div data-role="trigger">
+                                <h4>Title 2</h4>
                             </div>
-                            <div data-role="content">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                            <div data-role="content">
+                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </div>
+                        </div>
+
+                        <!-- Третий заголовок и контент аккордеона -->
+                        <div data-role="collapsible">
+                            <div data-role="trigger">
+                                <h4>Title 3</h4>
+                            </div>
+                            <div data-role="content">
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                            </div>
                         </div>
                     </div>
                 </div>

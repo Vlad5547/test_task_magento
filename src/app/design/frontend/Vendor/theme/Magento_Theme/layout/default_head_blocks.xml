@@ -5,7 +5,6 @@
         <script async="true" src="Magento_Theme::js/owl.carousel.min.js"/>
         <script async="true" src="Magento_Theme::js/custom.js"/>
         <script src="Magento_Theme::js/tabs_script.js"/>
-        <script src="Magento_Theme::js/popup.js"/>
         <css src="css/custom.css" rel="stylesheet" type="text/css"/>
         <css src="css/tabs_styles.css" rel="stylesheet" type="text/css"/>
         <css src="css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
