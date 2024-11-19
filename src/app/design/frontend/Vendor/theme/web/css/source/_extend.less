@@ -8,3 +8,29 @@ body {
     justify-content: center;
     align-items: center; 
 }
+
+.custom-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Выравниваем по верхнему краю */
+    gap: 20px; /* Промежуток между блоками */
+}
+
+.custom-product-info {
+    flex: 1; /* Занимает доступное пространство */
+}
+
+.product-info-main {
+    flex: 1; /* Занимает доступное пространство */
+    order: 2; /* Устанавливаем порядок, чтобы product.info.main был справа */
+}
+
+.field.qty .control {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.field.qty .control .input-text.qty {
+    margin-right: 20px;
+}
